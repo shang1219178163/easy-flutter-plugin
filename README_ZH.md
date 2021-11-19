@@ -10,6 +10,8 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
 </a>
 
+在 vscode, 搜索关键字 "easy-flutter-plugin" 即可.
+
 ## [English](https://github.com/shang1219178163/easy-flutter-plugin/blob/main/README.md) | 中文
 
 插件根据 flutter plugin 项目的 lib 目录 *.dart 文件方法自动映射生成 oc 方法声明；开发这只需要关注oc方法内部实现即可；

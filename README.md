@@ -10,6 +10,8 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
 </a>
 
+in vscode, search "easy-flutter-plugin".
+
 ## English | [中文](https://github.com/shang1219178163/easy-flutter-plugin/blob/main/README_ZH.md)
 
 Plug-ins automatically map to generate plug-in method claims based on the lib directory of the flutter plugin project, and developers only need to pay attention to the internal implementation of method;
