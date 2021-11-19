@@ -1,6 +1,6 @@
 # EasyFlutterPlugin
 
-<a href="https://pub.dev/packages/pull_to_refresh">
+<a href="https://marketplace.visualstudio.com/items?itemName=shang.easy-flutter-plugin">
   <img src="https://img.shields.io/pub/v/easy-flutter-plugin.svg"/>
 </a>
 <a href="https://flutter.dev/">
@@ -231,3 +231,6 @@ Initial release;
 
 update icon.
 
+### 0.0.4
+
+update Readme.
