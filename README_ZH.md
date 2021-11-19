@@ -5,7 +5,7 @@
 ## Features
 
 ***
-*.dart => Plugin.h + Plugin.m + main.dart
+*.dart => Swift*Plugin.swift/(*Plugin.h + *Plugin.m) + *Plugin.kt + *_test.dart + main.dart
 ***
 
 example：

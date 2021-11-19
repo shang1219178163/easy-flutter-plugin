@@ -1,9 +1,13 @@
 {
   "name": "easy-flutter-plugin",
 	"displayName": "easy-flutter-plugin",
-	"description": "flutter plugin *.dart convert to funcs.",
+	"description": "flutter plugin *.dart channel's function convert to objc/swift/test/main.dart",
 	"version": "0.0.1",
 	"license": "MIT",
+	"repository": {
+     "type": "git",
+     "url": "git@github.com:shang1219178163/easy-flutter-plugin.git"
+    },
 	"engines": {
 		"vscode": "^1.62.0"
 	},
