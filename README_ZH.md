@@ -218,19 +218,3 @@ Chrome: 91.0.4472.164
 Node.js: 14.16.0
 V8: 9.1.269.39-electron.0
 OS: Darwin x64 20.6.0
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 0.0.2
-
-Initial release;
-
-### 0.0.3
-
-update icon.
-
-### 0.0.4
-
-update Readme.
