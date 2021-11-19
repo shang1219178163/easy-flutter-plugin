@@ -1,12 +1,12 @@
 {
   "name": "easy-flutter-plugin",
   	"icon": "images/flutter.png",
-	"displayName": "easy-flutter-plugin",
+	"displayName": "Easy Flutter Plugin",
 	"description": "flutter plugin *.dart channel's function convert to objc/swift/kotlin/test/main.dart",
 	"homepage": "https://github.com/shang1219178163/easy-flutter-plugin",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"license": "MIT",
-	"publisher": "shang1219178163",
+	"publisher": "shang",
 	"repository": {
      "type": "git",
      "url": "git@github.com:shang1219178163/easy-flutter-plugin.git"
