@@ -14,11 +14,15 @@
 
 插件根据 flutter plugin 项目的 lib 目录 *.dart 文件方法自动映射生成 oc 方法声明；开发这只需要关注oc方法内部实现即可；
 
-## Features
-
-***
 *.dart => Swift*Plugin.swift/(*Plugin.h + *Plugin.m) + *Plugin.kt + *_test.dart + main.dart
-***
+
+## Features
+使用容易，节约时间和精力去实现核心代码.
+
+## Usage：
+choose /lib/*.dart, and Right-click menu 'Easy Flutter Plugin'
+
+![Usage](https://github.com/shang1219178163/easy-flutter-plugin/blob/main/screenshot.png?raw=true)
 
 example：
 ```

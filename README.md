@@ -17,10 +17,12 @@ Plug-ins automatically map to generate plug-in method claims based on the lib di
 ***.dart => Swift*Plugin.swift/(*Plugin.h + *Plugin.m) + *Plugin.kt + *_test.dart + main.dart**
 
 ## Features
-Easy to use, saving time and effort to implement core code
+Easy to use, saving time and effort to implement core code.
 
 ## Usage：
 choose /lib/*.dart, and Right-click menu 'Easy Flutter Plugin'
+
+![Usage](https://github.com/shang1219178163/easy-flutter-plugin/blob/main/screenshot.png?raw=true)
 
 #### example：
 ##### hello_test_two.dart
