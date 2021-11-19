@@ -16,7 +16,9 @@
 		"vscode": "^1.62.0"
 	},
 	"categories": [
-		"Other"
+		"Other",
+		"Automation",
+		"Efficiency tools"
 	],
 	"activationEvents": [
         "onCommand:extension.EasyFlutterPlugin",
