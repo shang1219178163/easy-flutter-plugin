@@ -1,5 +1,17 @@
 # EasyFlutterPlugin
 
+<a href="https://pub.dev/packages/pull_to_refresh">
+  <img src="https://img.shields.io/pub/v/easy-flutter-plugin.svg"/>
+</a>
+<a href="https://flutter.dev/">
+  <img src="https://img.shields.io/badge/flutter-%3E%3D%201.17.2-green.svg"/>
+</a>
+<a href="https://opensource.org/licenses/MIT">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
+</a>
+
+## English | [中文](https://github.com/shang1219178163/easy-flutter-plugin/blob/main/README_ZH.md)
+
 Plug-ins automatically map to generate plug-in method claims based on the lib directory of the flutter plugin project, and developers only need to pay attention to the internal implementation of method;
 
 ***.dart => Swift*Plugin.swift/(*Plugin.h + *Plugin.m) + *Plugin.kt + *_test.dart + main.dart**

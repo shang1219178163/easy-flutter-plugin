@@ -1,5 +1,17 @@
 # EasyFlutterPlugin
 
+<a href="https://pub.dev/packages/pull_to_refresh">
+  <img src="https://img.shields.io/pub/v/easy-flutter-plugin.svg"/>
+</a>
+<a href="https://flutter.dev/">
+  <img src="https://img.shields.io/badge/flutter-%3E%3D%201.17.2-green.svg"/>
+</a>
+<a href="https://opensource.org/licenses/MIT">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
+</a>
+
+## [English](https://github.com/shang1219178163/easy-flutter-plugin/blob/main/README.md) | 中文
+
 插件根据 flutter plugin 项目的 lib 目录 *.dart 文件方法自动映射生成 oc 方法声明；开发这只需要关注oc方法内部实现即可；
 
 ## Features
