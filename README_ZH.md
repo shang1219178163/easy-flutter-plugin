@@ -223,15 +223,11 @@ OS: Darwin x64 20.6.0
 
 Users appreciate release notes as you update your extension.
 
-### 0.0.1
+### 0.0.2
 
 Initial release;
 
-### 1.0.1
+### 0.0.3
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+update icon.
 
