@@ -4,6 +4,7 @@
 	"description": "flutter plugin *.dart channel's function convert to objc/swift/kotlin/test/main.dart",
 	"version": "0.0.1",
 	"license": "MIT",
+	"publisher": "shang1219178163",
 	"repository": {
      "type": "git",
      "url": "git@github.com:shang1219178163/easy-flutter-plugin.git"
