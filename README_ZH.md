@@ -22,7 +22,7 @@
 ## Usage：
 choose /lib/*.dart, and Right-click menu 'Easy Flutter Plugin'
 
-![Usage](https://github.com/shang1219178163/easy-flutter-plugin/blob/main/screenshot.png?raw=true)
+![Usage](https://github.com/shang1219178163/easy-flutter-plugin/blob/main/images/screenshot.png?raw=true)
 
 example：
 ```

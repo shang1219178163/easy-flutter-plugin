@@ -1,3 +1,3 @@
 # Change Log
 
-intial v0.0.1
+update icon.
