@@ -11,17 +11,11 @@ import "./utils/utils-extension";
 
 import { DartMethodModel } from './fileCreator/Models';
 
-// import * as creator from './fileCreator/Creator';
-import { LanguageFileCreator } from './fileCreator/LanguageFileCreator';
-import { ObjcCreatorModel } from './fileCreator/ObjcCreator';
-import { SwiftCreator, SwiftCreatorModel } from './fileCreator/SwiftCreator';
-import { DartCreatorModel, DartCreator } from './fileCreator/DartCreator';
-import { KotlinCreatorModel, KotlinCreator } from './fileCreator/KotlinCreator';
-
-// import { ObjcCreator } from './fileCreator/ObjcCreator';
-// import { SwiftCreator } from './fileCreator/SwiftCreator';
-// import { KotlinCreator } from './fileCreator/KotlinCreator';
-// import { DartCreator } from './fileCreator/DartCreator';
+// import * as creator from './fileCreator/LanguageFileCreator';
+import { FileCreator } from './fileCreator/FileCreator';
+import { DartCreatorModel } from './fileCreator/FlutterFileCreator';
+import { ObjcCreatorModel, SwiftCreatorModel } from './fileCreator/iOSFileCreator';
+import { KotlinCreatorModel } from './fileCreator/AndriodFileCreator';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -49,19 +43,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
-
-
-// class DartMethodModel{
-
-// 	constructor(public isStatic: boolean = true, 
-// 		public isFuture: boolean = true, 
-// 		public notes: string = "/// ", 
-// 		public name: string = "", 
-// 		public paramsType: string = "", 
-// 		public paramsName: string = "", 
-// 		public returnVal: string = "", 
-// 		public body: string = ""){}
-// }
 
 ///处理版本切换
 function handleFlutterVersionChange(){
@@ -173,13 +154,13 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 		return model;
 	});
 
-	let objcFileModel: ObjcCreatorModel = LanguageFileCreator.objc(fucModels, clsName, pluginName, version);
+	let objcFileModel = FileCreator.objc(fucModels, clsName, pluginName, version);
 
-	let swiftFileModel: SwiftCreatorModel = LanguageFileCreator.swift(fucModels, clsName, pluginName, version);
+	let swiftFileModel = FileCreator.swift(fucModels, clsName, pluginName, version);
 
-	let kotlinFileModel: KotlinCreatorModel = LanguageFileCreator.kotlin(fucModels, clsName, pluginName, version);
+	let kotlinFileModel = FileCreator.kotlin(fucModels, clsName, pluginName, version);
 
-	let dartFileModel: DartCreatorModel = LanguageFileCreator.dart(fucModels, clsName, pluginName, version);
+	let dartFileModel = FileCreator.dart(fucModels, clsName, pluginName, version);
 
 
 	let objcH = objcFileModel.pluginContentH;

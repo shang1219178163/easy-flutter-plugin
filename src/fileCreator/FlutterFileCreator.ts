@@ -1,11 +1,12 @@
 //
-//  Dartfilecreator.ts
+//  Fluttercreator.ts
 //  easy-flutter-plugin
 //
-//  Created by shangbinbin on 2021/11/19.
+//  Created by shangbinbin on 2021/11/21.
 //  Copyright © 2021 Shang. All rights reserved.
 //
 //
+
 
 
 import { DartMethodModel } from './Models';
