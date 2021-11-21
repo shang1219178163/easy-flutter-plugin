@@ -1,6 +1,10 @@
 # Change Log
 in vscode, search "easy-flutter-plugin".
 
+## Version 0.0.7
+
+* optimized code.
+
 ## Version 0.0.6
 
 * update doc.
@@ -8,7 +12,7 @@ in vscode, search "easy-flutter-plugin".
 ## Version 0.0.5
 
 * update doc.
-* 
+
 ## Version 0.0.4
 
 * update Readme.
