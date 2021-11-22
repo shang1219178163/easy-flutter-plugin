@@ -39,6 +39,14 @@ export class FileCreator{
             return new ios.SwiftCreatorModel(models, clsName, pluginName, flutterVersion);
         }  
 
+    static java(
+        models: DartMethodModel[],
+        clsName: string,
+        pluginName: string,
+        flutterVersion: string) : andriod.KotlinCreatorModel{
+            return new andriod.JavaCreatorModel(models, clsName, pluginName, flutterVersion);
+        }  
+
     static kotlin(
         models: DartMethodModel[],
         clsName: string,

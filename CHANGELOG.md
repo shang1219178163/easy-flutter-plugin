@@ -1,6 +1,10 @@
 # Change Log
 in vscode, search "easy-flutter-plugin".
 
+## Version 0.0.8
+
+* support java plugin.
+
 ## Version 0.0.7
 
 * optimized code.

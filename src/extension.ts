@@ -15,7 +15,7 @@ import { DartMethodModel } from './fileCreator/Models';
 import { FileCreator } from './fileCreator/FileCreator';
 import { DartCreatorModel } from './fileCreator/FlutterFileCreator';
 import { ObjcCreatorModel, SwiftCreatorModel } from './fileCreator/iOSFileCreator';
-import { KotlinCreatorModel } from './fileCreator/AndriodFileCreator';
+import { JavaCreatorModel, KotlinCreatorModel } from './fileCreator/AndriodFileCreator';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -158,6 +158,8 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 
 	let swiftFileModel = FileCreator.swift(fucModels, clsName, pluginName, version);
 
+	let javaFileModel = FileCreator.java(fucModels, clsName, pluginName, version);
+
 	let kotlinFileModel = FileCreator.kotlin(fucModels, clsName, pluginName, version);
 
 	let dartFileModel = FileCreator.dart(fucModels, clsName, pluginName, version);
@@ -168,6 +170,7 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 
 	let swiftContent = swiftFileModel.pluginContent;
 	
+	let javaContent = javaFileModel.pluginContent;
 	let kotlinContent = kotlinFileModel.pluginContent;
 	
 	let dartMainContent = dartFileModel.exampleMainContent;
@@ -181,8 +184,11 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 	let objcPluginM = `${isReplace ? iosPath : downloadDir}/${clsName}Plugin.m`;
 	let swiftPlugin = `${isReplace ? iosPath : downloadDir}/Swift${clsName}Plugin.swift`;
 
-	let andriodPath = rootPath + `/android/src/main/kotlin/com/example/${pluginName}`;
-	let kotlinPlugin = `${isReplace ? andriodPath : downloadDir}/${clsName}Plugin.kt`;
+	let andriodJavaPluginDir = rootPath + `/android/src/main/java/com/example/${pluginName}`;
+	let andriodKotlinPluginDir = rootPath + `/android/src/main/kotlin/com/example/${pluginName}`;
+
+	let javaPlugin = `${isReplace ? andriodJavaPluginDir : downloadDir}/${clsName}Plugin.java`;
+	let kotlinPlugin = `${isReplace ? andriodKotlinPluginDir : downloadDir}/${clsName}Plugin.kt`;
 
 	let dartMain = `${isReplace ? exampleMainPath : downloadDir}/main.dart`;
 	let dartTest = `${isReplace ? testPath : downloadDir}/${pluginName}_test.dart`;
@@ -201,7 +207,8 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 		if (fs.existsSync(kotlinPlugin)) {
 			writeFileToDisk(kotlinContent, kotlinPlugin);
 		} else {
-			vscode.window.showInformationMessage("Plug-in java file generation is not supported at this time");
+			writeFileToDisk(javaContent, javaPlugin);
+			// vscode.window.showInformationMessage("Plug-in java file generation is not supported at this time");
 		}
 	} else {
 		writeFileToDisk(swiftContent, swiftPlugin);
