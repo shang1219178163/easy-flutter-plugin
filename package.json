@@ -4,7 +4,7 @@
 	"displayName": "Easy Flutter Plugin",
 	"description": "flutter plugin *.dart channel's function convert to objc/swift/java/kotlin/test/main files.",
 	"homepage": "https://github.com/shang1219178163/easy-flutter-plugin",
-	"version": "0.0.10",
+	"version": "0.0.11",
 	"license": "MIT",
 	"publisher": "shang",
 	"repository": {
@@ -34,7 +34,7 @@
 		"menus": {
 			"editor/context": [
 				{
-					"when": "editorFocus && resourceLangId == dart",
+					"when": "resourceLangId == dart",
 					"command": "extension.EasyFlutterPlugin",
 					"group": "navigation"
 				}
