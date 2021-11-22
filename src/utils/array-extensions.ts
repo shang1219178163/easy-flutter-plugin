@@ -30,6 +30,8 @@ declare global {
         insertItems(items: Array<T>, atIndex: number): Array<T>;
 
         replace(index: number, item: T): Array<T>;
+
+        filterNull(): Array<T>;
 	}
 }  
 
@@ -111,6 +113,12 @@ if (!Array.prototype.replace) {
             (<Array<T>>this)[index] = item;
         }
         return this;
+    }; 
+} 
+
+if (!Array.prototype.filterNull) { 
+    Array.prototype.filterNull = function<T>(): Array<T> { 
+        return this.filter(e => e !== null && e !== undefined );
     }; 
 } 
 

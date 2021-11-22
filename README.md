@@ -13,7 +13,7 @@ in vscode, search "easy-flutter-plugin".
 
 Plug-ins automatically map to generate plug-in method claims based on the lib directory of the flutter plugin project, and developers only need to pay attention to the internal implementation of method;
 
-***.dart => Swift*Plugin.swift/(*Plugin.h + *Plugin.m) + *Plugin.kt + *_test.dart + main.dart**
+**\*.dart => Swift\*Plugin.swift/(\*Plugin.h +  \*Plugin.m) +  \*Plugin.kt/ \*Plugin.java +  \*_test.dart + main.dart**
 
 ## Features
 Easy to use, saving time and effort to implement core code.
