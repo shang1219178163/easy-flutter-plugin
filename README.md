@@ -1,8 +1,5 @@
 # EasyFlutterPlugin
 
-<a href="https://marketplace.visualstudio.com/items?itemName=shang.easy-flutter-plugin">
-  <img src="https://img.shields.io/pub/v/easy-flutter-plugin.svg"/>
-</a>
 <a href="https://flutter.dev/">
   <img src="https://img.shields.io/badge/flutter-%3E%3D%201.17.2-green.svg"/>
 </a>
@@ -25,6 +22,10 @@ Easy to use, saving time and effort to implement core code.
 choose /lib/*.dart, and Right-click menu 'Easy Flutter Plugin'
 
 ![Usage](https://github.com/shang1219178163/easy-flutter-plugin/blob/main/images/screenshot.png?raw=true)
+
+![iPhone_screenshot](https://github.com/shang1219178163/easy-flutter-plugin/blob/main/screenshots/Screen%20Shot%20-%20iPhone%2012%20Pro%20-%202021-11-22.png?raw=true)
+
+![andriod_screenshot](https://github.com/shang1219178163/easy-flutter-plugin/blob/main/screenshots/andriod_screenshot_2021-11-22.png?raw=true)
 
 #### example：
 ##### hello_test_two.dart
@@ -575,6 +576,223 @@ class _MyAppState extends State<MyApp> {
   }
 }
 ```
+
+##### hello_test_one.swift
+```
+import Flutter
+import UIKit
+
+public class SwiftHelloTestOnePlugin: NSObject, FlutterPlugin {
+    
+    public static func register(with registrar: FlutterPluginRegistrar) {
+        let channel = FlutterMethodChannel(name: "hello_test_one", binaryMessenger: registrar.messenger())
+        let instance = SwiftHelloTestOnePlugin()
+        registrar.addMethodCallDelegate(instance, channel: channel)
+    }
+    
+    public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        switch call.method {
+		case "getPlatformVersion":
+            getPlatformVersion(call.arguments, callback: result)
+		case "getAppVersion":
+            getAppVersion(call.arguments as? [String: Any], callback: result)
+		case "getAppVersion1":
+            getAppVersion1(call.arguments as? [String], callback: result)
+		case "getAppVersion2":
+            getAppVersion2(call.arguments as? String, callback: result)
+		case "getAppVersion3":
+            getAppVersion3(call.arguments as? Int, callback: result)
+		case "getAppVersion4":
+            getAppVersion4(call.arguments as? Double, callback: result)
+		case "getAppVersion5":
+            getAppVersion5(call.arguments as? Bool, callback: result)
+        default:
+            print(#function, #line, call.method, call.arguments as Any)
+            result(FlutterMethodNotImplemented)
+        }
+    }
+    
+    // MARK: -funtions
+    func getPlatformVersion(_ params: Any?, callback: FlutterResult) {
+        let result = "\(#function) \n params: \(params ?? "null")"
+        callback(result);
+    }
+
+    func getAppVersion(_ params: [String: Any]?, callback: FlutterResult) {
+        guard let params = params else {
+            let error = FlutterError(code: "404", message: "The parameter is abnormal, please check", details: nil)
+            return callback(error)
+        }
+        let result = "\(#function) \n params: \(params)"
+        callback(result);
+    }
+
+    func getAppVersion1(_ params: [String]?, callback: FlutterResult) {
+        guard let params = params else {
+            let error = FlutterError(code: "404", message: "The parameter is abnormal, please check", details: nil)
+            return callback(error)
+        }
+        let result = "\(#function) \n params: \(params)"
+        callback(result);
+    }
+
+    func getAppVersion2(_ params: String?, callback: FlutterResult) {
+        guard let params = params else {
+            let error = FlutterError(code: "404", message: "The parameter is abnormal, please check", details: nil)
+            return callback(error)
+        }
+        let result = "\(#function) \n params: \(params)"
+        callback(result);
+    }
+
+    func getAppVersion3(_ params: Int?, callback: FlutterResult) {
+        guard let params = params else {
+            let error = FlutterError(code: "404", message: "The parameter is abnormal, please check", details: nil)
+            return callback(error)
+        }
+        let result = "\(#function) \n params: \(params)"
+        callback(result);
+    }
+
+    func getAppVersion4(_ params: Double?, callback: FlutterResult) {
+        guard let params = params else {
+            let error = FlutterError(code: "404", message: "The parameter is abnormal, please check", details: nil)
+            return callback(error)
+        }
+        let result = "\(#function) \n params: \(params)"
+        callback(result);
+    }
+
+    func getAppVersion5(_ params: Bool?, callback: FlutterResult) {
+        guard let params = params else {
+            let error = FlutterError(code: "404", message: "The parameter is abnormal, please check", details: nil)
+            return callback(error)
+        }
+        let result = "\(#function) \n params: \(params)"
+        callback(result);
+    }
+}	
+```
+
+##### hello_test_four.java
+```
+package com.example.hello_test_four;
+
+import androidx.annotation.NonNull;
+
+import java.util.HashMap;
+import java.util.List;
+
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.MethodChannel;
+import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
+import io.flutter.plugin.common.MethodChannel.Result;
+import io.flutter.plugin.common.PluginRegistry.Registrar;
+
+/** HelloTestFourPlugin */
+public class HelloTestFourPlugin implements FlutterPlugin, MethodCallHandler {
+
+    private MethodChannel channel;
+    
+    @Override
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+        channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "hello_test_four");
+        channel.setMethodCallHandler(this);
+    }
+
+    public static void registerWith(Registrar registrar) {
+        final MethodChannel channel = new MethodChannel(registrar.messenger(), "hello_test_four");
+        channel.setMethodCallHandler(new HelloTestFourPlugin());
+    }
+    
+    @Override
+    public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
+        switch (call.method) {
+            case "getPlatformVersion":
+            getPlatformVersion(result);;
+            break;
+            
+		case "getAppVersion":
+            getAppVersion((HashMap<String, Object>) call.arguments, result);;
+            break;
+            
+		case "getAppVersion1":
+            getAppVersion1((List<String>) call.arguments, result);;
+            break;
+            
+		case "getAppVersion2":
+            getAppVersion2((String) call.arguments, result);;
+            break;
+            
+		case "getAppVersion3":
+            getAppVersion3((int) call.arguments, result);;
+            break;
+            
+		case "getAppVersion4":
+            getAppVersion4((double) call.arguments, result);;
+            break;
+            
+		case "getAppVersion5":
+            getAppVersion5((boolean) call.arguments, result);;
+            break;
+            
+        default :
+            result.notImplemented();
+            break;   
+        }       
+    }
+
+    @Override
+    public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+        channel.setMethodCallHandler(null);
+    }
+
+    // MARK: -funtions
+
+    private void getPlatformVersion(@NonNull Result callback) {
+    	String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+    	String result = String.format("%s \n params: null", method);
+    	callback.success(result);
+    }
+
+    private void getAppVersion(HashMap<String, Object> params, @NonNull Result callback) {
+    	String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+    	String result = String.format("%s \n params: %s", method, params);
+    	callback.success(result);
+    }
+
+    private void getAppVersion1(List<String> params, @NonNull Result callback) {
+    	String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+    	String result = String.format("%s \n params: %s", method, params);
+    	callback.success(result);
+    }
+
+    private void getAppVersion2(String params, @NonNull Result callback) {
+    	String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+    	String result = String.format("%s \n params: %s", method, params);
+    	callback.success(result);
+    }
+
+    private void getAppVersion3(int params, @NonNull Result callback) {
+    	String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+    	String result = String.format("%s \n params: %s", method, params);
+    	callback.success(result);
+    }
+
+    private void getAppVersion4(double params, @NonNull Result callback) {
+    	String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+    	String result = String.format("%s \n params: %s", method, params);
+    	callback.success(result);
+    }
+
+    private void getAppVersion5(boolean params, @NonNull Result callback) {
+    	String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+    	String result = String.format("%s \n params: %s", method, params);
+    	callback.success(result);
+    }
+}	
+```
 ## Requirements
 VSCode:
 版本: 1.62.2
@@ -585,3 +803,11 @@ Chrome: 91.0.4472.164
 Node.js: 14.16.0
 V8: 9.1.269.39-electron.0
 OS: Darwin x64 20.6.0
+
+#### Platform iOS:
+version: 10.0, 
+swift: 5.0
+
+#### Platform Andriod:
+version: 22, 
+java: 1.8
