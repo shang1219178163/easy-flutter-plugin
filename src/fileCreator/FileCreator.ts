@@ -6,7 +6,7 @@
 //  Created by shangbinbin on 2021/11/19.
 //  Copyright © 2021 Shang. All rights reserved.
 //
-// 后期考虑优化代码结构, 将各种 Creator 融合
+// 因为每种语言的生成的文件(只读属性)不同,故不使用使用工厂进行封装
 
 import { DartMethodModel } from './Models';
 
