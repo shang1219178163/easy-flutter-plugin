@@ -96,9 +96,11 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 	// const fileName = vscode.workspace.name;
 	// console.log(Date().toLocaleString(), fileName);
 
+	// let message = "请选择 flutter 插件工程目录 lib下的 *.dart文件.";
+	let message = "Please select the *.dart file in the lib directory of the flutter plugin project.";
 	if (!vscode.window.activeTextEditor 
 		|| vscode.window.activeTextEditor?.document.languageId !== "dart") {
-		vscode.window.showErrorMessage("Please select the *.dart file in the lib directory of the flutter plugin project");
+		vscode.window.showErrorMessage(message);
 		return;
 	}
 
@@ -109,7 +111,7 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 	const content: string = fs.readFileSync(currentOpenTabfilePath, 'utf8'); 
 	// console.log(Date(), content);
 	if (!content.includes("MethodChannel(")) {
-		vscode.window.showErrorMessage("请选择 flutter 插件工程目录 lib下的 *.dart文件");
+		vscode.window.showErrorMessage(message);
 		return;
 	}
 
