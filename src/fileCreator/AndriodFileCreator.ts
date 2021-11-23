@@ -210,7 +210,6 @@ export class KotlinCreatorModel {
 export class JavaCreatorModel {
 
     readonly pluginContent: string = "";
-	// static pluginContent: any;
   
     constructor(
         public models: DartMethodModel[],

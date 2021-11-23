@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 //
 //  Creator.ts
 //  easy-flutter-plugin
@@ -43,7 +44,7 @@ export class FileCreator{
         models: DartMethodModel[],
         clsName: string,
         pluginName: string,
-        flutterVersion: string) : andriod.KotlinCreatorModel{
+        flutterVersion: string) : andriod.JavaCreatorModel{
             return new andriod.JavaCreatorModel(models, clsName, pluginName, flutterVersion);
         }  
 
