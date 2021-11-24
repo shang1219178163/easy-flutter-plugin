@@ -1,17 +1,17 @@
 {
-  "name": "easy-flutter-plugin",
+  	"name": "easy-flutter-plugin",
   	"icon": "images/flutter.png",
 	"displayName": "Easy Flutter Plugin",
 	"description": "flutter plugin *.dart channel's function convert to objc/swift/java/kotlin/test/main files.",
 	"homepage": "https://github.com/shang1219178163/easy-flutter-plugin",
-	"version": "0.0.13",
+	"version": "0.0.14",
 	"license": "MIT",
 	"publisher": "shang",
 	"repository": {
      "type": "git",
      "url": "git@github.com:shang1219178163/easy-flutter-plugin.git"
     },
-	"keywords": ["flutter", "plugin", "flutter plugin", "easy flutter", "easy plugin", "easy flutter plugin"],
+	"keywords": ["flutter", "flutter plugin", "easy flutter plugin"],
 	"engines": {
 		"vscode": "^1.62.0"
 	},
@@ -20,14 +20,14 @@
 		"Formatters"
 	],
 	"activationEvents": [
-        "onCommand:extension.EasyFlutterPlugin",
+        "onCommand:shang.EasyFlutterPlugin",
 		"onLanguage:dart"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.EasyFlutterPlugin",
+				"command": "shang.EasyFlutterPlugin",
 				"title": "Easy Flutter Plugin"
 			}
 		],
@@ -35,10 +35,21 @@
 			"editor/context": [
 				{
 					"when": "resourceLangId == dart",
-					"command": "extension.EasyFlutterPlugin",
+					"command": "shang.EasyFlutterPlugin",
 					"group": "navigation"
 				}
 			]
+		},
+		"configuration": {
+			"type": "object",
+			"title": "Easy Flutter Plugin",
+			"properties": {
+				"showTip": {
+					"type": "boolean",
+					"default": false,
+					"description": "Do you want to display a prompt each time you start!"
+				}
+			}
 		}
 	},
 	"scripts": {

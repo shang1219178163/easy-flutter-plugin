@@ -60,7 +60,7 @@ if (!String.prototype.substringBetween) {
 }
 
 if (!String.prototype.camelCase) {
-    String.prototype.camelCase = function(splitter: string = "_", firstCharacterCapitalize: boolean = true): string {
+    String.prototype.camelCase = function(splitter: string = "-", firstCharacterCapitalize: boolean = true): string {
         return this.split(splitter)
         .map((e, index) => {
             if (index === 0 && firstCharacterCapitalize === false) {

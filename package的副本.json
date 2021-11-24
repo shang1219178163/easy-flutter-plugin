@@ -1,0 +1,130 @@
+{
+  	"name": "easy-flutter-plugin",
+  	"icon": "images/flutter.png",
+	"displayName": "Easy Flutter Plugin",
+	"description": "flutter plugin *.dart channel's function convert to objc/swift/java/kotlin/test/main files.",
+	"homepage": "https://github.com/shang1219178163/easy-flutter-plugin",
+	"version": "0.0.13",
+	"license": "MIT",
+	"publisher": "shang",
+	"repository": {
+     "type": "git",
+     "url": "git@github.com:shang1219178163/easy-flutter-plugin.git"
+    },
+	"keywords": ["flutter", "plugin", "flutter plugin", "easy flutter", "easy plugin", "easy flutter plugin"],
+	"engines": {
+		"vscode": "^1.62.0"
+	},
+	"categories": [
+		"Other",
+		"Formatters"
+	],
+	"activationEvents": [
+        "onCommand:shang.EasyFlutterPlugin",
+		"onLanguage:dart"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "shang.EasyFlutterPlugin",
+				"title": "Easy Flutter Plugin"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "resourceLangId == dart",
+					"command": "shang.EasyFlutterPlugin",
+					"group": "navigation"
+				}
+			]
+		},
+		"configuration": {
+			"type": "object",
+			"title": "Easy Flutter Plugin",
+			"properties": {
+				"easy-flutter-plugin.input": {
+					"type": "string",
+					"default": "defaultValue",
+					"description": "provide a input for accepting value"
+				},
+				"easy-flutter-plugin.inputNum": {
+					"type": "number",
+					"default": "1.001",
+					"description": "provide a input for accepting number"
+				},
+				"easy-flutter-plugin.inputInt": {
+					"type": "integer",
+					"default": "1",
+					"markdownDescription": "MarkdownDescription: provide a input for accepting integer, See the [VSCode Docs (https://code.visualstudio.com/api/references/contribution-points#contributes.configuration) for more details.\n - a: item1\n - b: itemb"
+				},
+				"easy-flutter-plugin.checkbox": {
+					"type": "boolean",
+					"default": "0",
+					"description": "provide a checkbox"
+				},
+				"easy-flutter-plugin.dropdown": {
+					"type": "string",
+					"default": "defaultValue",
+					"enum": [
+						"optionA",
+						"optionB",
+						"optionC"
+					],
+					"description": "provide a dropdown and options",
+					"enumDescriptions": [
+						"description for option A",
+						"description for option B",
+						"description for option C"
+					]
+				},
+				"easy-flutter-plugin.array": {
+					"type": "array",
+					"default": [
+						"defaultValue"
+					],
+					"description": "array settings is only available at settings.json"
+				},
+				"easy-flutter-plugin.object": {
+					"type": "object",
+					"default": { 
+						"key" : "defaultValue"
+					},
+					"description": "object settings is only available at settings.json"
+				},
+				"easy-flutter-plugin.null.a": {
+					"type": null,
+					"default": null,
+					"description": "null settings for showing group feature"
+				},
+				"easy-flutter-plugin.null.b": {
+					"type": null,
+					"default": null,
+					"description": "null settings for showing group feature"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.62.0",
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^9.0.0",
+		"@types/node": "14.x",
+		"@typescript-eslint/eslint-plugin": "^5.1.0",
+		"@typescript-eslint/parser": "^5.1.0",
+		"eslint": "^8.1.0",
+		"glob": "^7.1.7",
+		"mocha": "^9.1.3",
+		"typescript": "^4.4.4",
+		"@vscode/test-electron": "^1.6.2"
+	}
+}
