@@ -29,7 +29,7 @@ export module KotlinCreator {
             // let paramsType = "Any?";
 
             // let funcName = `${model.isStatic ? "static" : ""} fun ${model.name}(params: ${paramsType}, callback: Result)`;
-            let funcName = `private fun ${model.name}(params: ${paramsType}, callback: Result)`;
+            let funcName = `private fun ${model.name}(params: ${paramsType}, @NonNull callback: Result)`;
 
             let funcBody = `
     ${funcName} {
@@ -97,7 +97,6 @@ ${models.map((e, index) => {
     }
 
     // MARK: -funtions
-
 ${models.map((e, index) => { 
     return createFuncAbout(e)[0];
 }).join("\n\n")}
@@ -123,62 +122,61 @@ ${models.map((e, index) => {
             // let paramsType = "Any?";
 
             // let funcName = `${model.isStatic ? "static" : ""} fun ${model.name}(params: ${paramsType}, callback: Result)`;
-            let funcName = `private fun ${model.name}(params: ${paramsType}, callback: Result)`;
+            let funcName = `private fun ${model.name}(params: ${paramsType}, @NonNull callback: Result)`;
 
             let funcBody = `
-        ${funcName} {
-        \tval result = "${funcName} \\n params: \${params.toString()}"
-        \tcallback.success(result);
-        }`;
+    ${funcName} {
+    \tval result = "${funcName} \\n params: \${params.toString()}"
+    \tcallback.success(result);
+    }`;
 
-            let	switchCase =`\t\t"${model.name}" -> ${model.name}(call.arguments as ${paramsType}, result)`;
-            return [switchCase, funcBody];
+            let	switchCase =`\t\t\t"${model.name}" -> ${model.name}(call.arguments as ${paramsType}, result)`;
+            return [funcBody, switchCase];
         }
 
         let content = `
-    package com.example.${pluginName}
+package com.example.${pluginName}
 
-    import androidx.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-    import io.flutter.embedding.engine.plugins.FlutterPlugin
-    import io.flutter.plugin.common.MethodCall
-    import io.flutter.plugin.common.MethodChannel
-    import io.flutter.plugin.common.MethodChannel.MethodCallHandler
-    import io.flutter.plugin.common.MethodChannel.Result
-    import io.flutter.plugin.common.PluginRegistry.Registrar
+import io.flutter.embedding.engine.plugins.FlutterPlugin
+import io.flutter.plugin.common.MethodCall
+import io.flutter.plugin.common.MethodChannel
+import io.flutter.plugin.common.MethodChannel.MethodCallHandler
+import io.flutter.plugin.common.MethodChannel.Result
+import io.flutter.plugin.common.PluginRegistry.Registrar
 
-    /** ${clsName}Plugin */
-    public class ${clsName}Plugin: FlutterPlugin, MethodCallHandler {
-        /// The MethodChannel that will the communication between Flutter and native Android
-        ///
-        /// This local reference serves to register the plugin with the Flutter Engine and unregister it
-        /// when the Flutter Engine is detached from the Activity
-        private lateinit var channel : MethodChannel
+/** ${clsName}Plugin */
+public class ${clsName}Plugin: FlutterPlugin, MethodCallHandler {
+    /// The MethodChannel that will the communication between Flutter and native Android
+    ///
+    /// This local reference serves to register the plugin with the Flutter Engine and unregister it
+    /// when the Flutter Engine is detached from the Activity
+    private lateinit var channel : MethodChannel
 
-        override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-            channel = MethodChannel(flutterPluginBinding.binaryMessenger, "${pluginName}")
-            channel.setMethodCallHandler(this)
-        }
+    override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "${pluginName}")
+        channel.setMethodCallHandler(this)
+    }
 
-        override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-            when (call.method) {
+    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+        when (call.method) {
 ${models.map((e, index) => { 
-    return createFuncAbout(e)[1];
+return createFuncAbout(e)[1];
 }).join("\n\n")}
-                else -> result.notImplemented()
-            }
+            else -> result.notImplemented()
         }
+    }
 
-        override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-            channel.setMethodCallHandler(null)
-        }
+    override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+        channel.setMethodCallHandler(null)
+    }
 
-        // MARK: -funtions
-
+    // MARK: -funtions
 ${models.map((e, index) => { 
     return createFuncAbout(e)[0];
 }).join("\n\n")}
-    }	
+}	
     `;
         return content;
     }
@@ -228,7 +226,7 @@ export class JavaCreatorModel {
     }  
 
     /// 创建*plugin.java 文件
-    createPlugin1172(models: DartMethodModel[], clsName: string, pluginName: string): string {
+    private createPlugin1172(models: DartMethodModel[], clsName: string, pluginName: string): string {
         /// return [func, swith case]
         function createFuncAbout(model: DartMethodModel): [string, string] {
             let typeConverDic = new Map([
@@ -351,7 +349,7 @@ ${models.map((e, index) => {
 
     /// 创建*plugin.java 文件
     /// 创建*plugin.java 文件
-    createPlugin250(models: DartMethodModel[], clsName: string, pluginName: string): string {
+    private createPlugin250(models: DartMethodModel[], clsName: string, pluginName: string): string {
         /// return [func, swith case]
         function createFuncAbout(model: DartMethodModel): [string, string] {
             let typeConverDic = new Map([

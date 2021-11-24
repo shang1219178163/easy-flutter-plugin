@@ -1,6 +1,11 @@
 # Change Log
 in vscode, search "easy-flutter-plugin".
 
+
+## Version 0.0.15
+
+* support web plugin.
+
 ## Version 0.0.14
 
 * add active prompt.

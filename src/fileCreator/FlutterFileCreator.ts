@@ -40,7 +40,7 @@ export module DartCreator {
                 }),
                 child: Text(_${e.name}),
               ),
-              Divider(),`;
+              const Divider(),`;
             }).join("");
 
         let content = `
@@ -143,7 +143,7 @@ class _MyAppState extends State<MyApp> {
                 }),
                 child: Text(_${e.name}),
               ),
-              Divider(),`;
+              const Divider(),`;
         }).join("");
 
         let content = 
@@ -236,19 +236,19 @@ class _MyAppState extends State<MyApp> {
             break;
 
         case "String":
-            params = `final val = "aaa";`;
+            params = `const val = "aaa";`;
             break;
 
         case "int":
-            params = `final val = 66;`;
+            params = `const val = 66;`;
             break;
 
         case "double":
-            params = `final val = 88.0;`;
+            params = `const val = 88.0;`;
             break;
 
         case "bool":
-            params = `final val = false;`;
+            params = `const val = false;`;
             break;
 
         default:
@@ -291,19 +291,19 @@ class _MyAppState extends State<MyApp> {
                 break;
         
             case "String":
-                params = `final val = "aaa";`;
+                params = `const val = "aaa";`;
                 break;
         
             case "int":
-                params = `final val = 66;`;
+                params = `const val = 66;`;
                 break;
         
             case "double":
-                params = `final val = 88.0;`;
+                params = `const val = 88.0;`;
                 break;
         
             case "bool":
-                params = `final val = false;`;
+                params = `const val = false;`;
                 break;
         
             default:

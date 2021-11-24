@@ -102,6 +102,8 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 	let pluginName = rootPath.split("/").reverse()[0];
 	let iosPath = rootPath + "/ios/Classes";
 
+	let webPath = rootPath + "/lib";
+
 	let exampleMainPath = rootPath + "/example/lib";
 	let testPath = rootPath + "/test";
 
@@ -180,17 +182,7 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 
 	let dartFileModel = FileCreator.dart(fucModels, clsName, pluginName, version);
 
-
-	let objcH = objcFileModel.pluginContentH;
-	let objcM = objcFileModel.pluginContentM;
-
-	let swiftContent = swiftFileModel.pluginContent;
-	
-	let javaContent = javaFileModel.pluginContent;
-	let kotlinContent = kotlinFileModel.pluginContent;
-	
-	let dartMainContent = dartFileModel.exampleMainContent;
-	let dartTestContent = dartFileModel.pluginTestContent;
+	let webFileModel = FileCreator.web(fucModels, clsName, pluginName, version);
 
 	// console.log(Date(), objcH, objcM, objcContent);
 	let downloadDir = rootPath.split("/").slice(0, 3).concat("Downloads").join("/");
@@ -206,6 +198,8 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 	let javaPlugin = `${isReplace ? andriodJavaPluginDir : downloadDir}/${clsName}Plugin.java`;
 	let kotlinPlugin = `${isReplace ? andriodKotlinPluginDir : downloadDir}/${clsName}Plugin.kt`;
 
+	let webPlugin = `${isReplace ? webPath : downloadDir}/${pluginName}_web.dart`;
+
 	let dartMain = `${isReplace ? exampleMainPath : downloadDir}/main.dart`;
 	let dartTest = `${isReplace ? testPath : downloadDir}/${pluginName}_test.dart`;
 
@@ -214,29 +208,35 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 
 	if (isReplace) {
 		if (fs.existsSync(swiftPlugin)) {
-			writeFileToDisk(swiftContent, swiftPlugin);
+			writeFileToDisk(swiftFileModel.pluginContent, swiftPlugin);
 		} else {
-			writeFileToDisk(objcH, objcPluginH);
-			writeFileToDisk(objcM, objcPluginM);
+			writeFileToDisk(objcFileModel.pluginContentH, objcPluginH);
+			writeFileToDisk(objcFileModel.pluginContentM, objcPluginM);
 		}
 
 		if (fs.existsSync(kotlinPlugin)) {
-			writeFileToDisk(kotlinContent, kotlinPlugin);
+			writeFileToDisk(kotlinFileModel.pluginContent, kotlinPlugin);
 		} else {
-			writeFileToDisk(javaContent, javaPlugin);
-			// vscode.window.showInformationMessage("Plug-in java file generation is not supported at this time");
+			writeFileToDisk(javaFileModel.pluginContent, javaPlugin);
 		}
+
+		if (fs.existsSync(webPlugin)) {
+			writeFileToDisk(webFileModel.pluginContent, webPlugin);
+		}
+
 	} else {
-		writeFileToDisk(swiftContent, swiftPlugin);
-		writeFileToDisk(objcH, objcPluginH);
-		writeFileToDisk(objcM, objcPluginM);
-		writeFileToDisk(kotlinContent, kotlinPlugin);
+		writeFileToDisk(swiftFileModel.pluginContent, swiftPlugin);
+		writeFileToDisk(objcFileModel.pluginContentH, objcPluginH);
+		writeFileToDisk(objcFileModel.pluginContentM, objcPluginM);
+		writeFileToDisk(kotlinFileModel.pluginContent, kotlinPlugin);
+		writeFileToDisk(webFileModel.pluginContent, webPlugin);
 	}
-	writeFileToDisk(dartMainContent, dartMain);
-	writeFileToDisk(dartTestContent, dartTest);
+
+	writeFileToDisk(dartFileModel.exampleMainContent, dartMain);
+	writeFileToDisk(dartFileModel.pluginTestContent, dartTest);
 
 	///复制到剪贴板
-	vscode.env.clipboard.writeText(kotlinContent);
+	vscode.env.clipboard.writeText(kotlinFileModel.pluginContent);
 }
 
 ///写入文件

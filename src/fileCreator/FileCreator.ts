@@ -13,6 +13,7 @@ import { DartMethodModel } from './Models';
 import  *  as flutter from './FlutterFileCreator';
 import  *  as andriod from './AndriodFileCreator';
 import  *  as ios from './iOSFileCreator';
+import  *  as web from './WebFileCreator';
 
 export class FileCreator{
 
@@ -56,4 +57,11 @@ export class FileCreator{
             return new andriod.KotlinCreatorModel(models, clsName, pluginName, flutterVersion);
         }  
 
+    static web(
+        models: DartMethodModel[],
+        clsName: string,
+        pluginName: string,
+        flutterVersion: string) : web.WebCreatorModel{
+            return new web.WebCreatorModel(models, clsName, pluginName, flutterVersion);
+        }  
 }
