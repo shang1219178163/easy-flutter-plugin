@@ -342,31 +342,31 @@ public class HelloTestFourPlugin implements FlutterPlugin, MethodCallHandler {
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         switch (call.method) {
             case "getPlatformVersion":
-            getPlatformVersion(result);;
+            getPlatformVersion(result);
             break;
             
 		case "getAppVersion":
-            getAppVersion((HashMap<String, Object>) call.arguments, result);;
+            getAppVersion((HashMap<String, Object>) call.arguments, result);
             break;
             
 		case "getAppVersion1":
-            getAppVersion1((List<String>) call.arguments, result);;
+            getAppVersion1((List<String>) call.arguments, result);
             break;
             
 		case "getAppVersion2":
-            getAppVersion2((String) call.arguments, result);;
+            getAppVersion2((String) call.arguments, result);
             break;
             
 		case "getAppVersion3":
-            getAppVersion3((int) call.arguments, result);;
+            getAppVersion3((int) call.arguments, result);
             break;
             
 		case "getAppVersion4":
-            getAppVersion4((double) call.arguments, result);;
+            getAppVersion4((double) call.arguments, result);
             break;
             
 		case "getAppVersion5":
-            getAppVersion5((boolean) call.arguments, result);;
+            getAppVersion5((boolean) call.arguments, result);
             break;
             
         default :

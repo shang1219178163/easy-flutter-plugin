@@ -150,7 +150,8 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 		const list = e.split(" ").filter(function (value, index, array) {
 			return value !== "";
 		});
-		const returnVal = list[1];
+		// const returnVal = list[1];
+		const returnVal = list[1].split(/<|>/)[1];
 
 		// const idx = val.indexOf("> ");
 		// const idx1 = val.lastIndexOf("(");
@@ -188,15 +189,15 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 	let downloadDir = rootPath.split("/").slice(0, 3).concat("Downloads").join("/");
 	console.log(Date(), downloadDir);
 
-	let objcPluginH = `${isReplace ? iosPath : downloadDir}/${clsName}Plugin.h`;
-	let objcPluginM = `${isReplace ? iosPath : downloadDir}/${clsName}Plugin.m`;
-	let swiftPlugin = `${isReplace ? iosPath : downloadDir}/Swift${clsName}Plugin.swift`;
+	let objcPluginH = `${isReplace ? iosPath : downloadDir}/${clsName}${clsName.endsWith("Plugin") ? "" : "Plugin"}.h`;
+	let objcPluginM = `${isReplace ? iosPath : downloadDir}/${clsName}${clsName.endsWith("Plugin") ? "" : "Plugin"}.m`;
+	let swiftPlugin = `${isReplace ? iosPath : downloadDir}/Swift${clsName}${clsName.endsWith("Plugin") ? "" : "Plugin"}.swift`;
 
 	let andriodJavaPluginDir = rootPath + `/android/src/main/java/com/example/${pluginName}`;
 	let andriodKotlinPluginDir = rootPath + `/android/src/main/kotlin/com/example/${pluginName}`;
 
-	let javaPlugin = `${isReplace ? andriodJavaPluginDir : downloadDir}/${clsName}Plugin.java`;
-	let kotlinPlugin = `${isReplace ? andriodKotlinPluginDir : downloadDir}/${clsName}Plugin.kt`;
+	let javaPlugin = `${isReplace ? andriodJavaPluginDir : downloadDir}/${clsName}${clsName.endsWith("Plugin") ? "" : "Plugin"}.java`;
+	let kotlinPlugin = `${isReplace ? andriodKotlinPluginDir : downloadDir}/${clsName}${clsName.endsWith("Plugin") ? "" : "Plugin"}.kt`;
 
 	let webPlugin = `${isReplace ? webPath : downloadDir}/${pluginName}_web.dart`;
 
@@ -216,7 +217,9 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 
 		if (fs.existsSync(kotlinPlugin)) {
 			writeFileToDisk(kotlinFileModel.pluginContent, kotlinPlugin);
-		} else {
+		}
+
+		if (fs.existsSync(javaPlugin)) {
 			writeFileToDisk(javaFileModel.pluginContent, javaPlugin);
 		}
 
@@ -229,6 +232,7 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 		writeFileToDisk(objcFileModel.pluginContentH, objcPluginH);
 		writeFileToDisk(objcFileModel.pluginContentM, objcPluginM);
 		writeFileToDisk(kotlinFileModel.pluginContent, kotlinPlugin);
+		writeFileToDisk(javaFileModel.pluginContent, javaPlugin);
 		writeFileToDisk(webFileModel.pluginContent, webPlugin);
 	}
 
@@ -236,7 +240,7 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 	writeFileToDisk(dartFileModel.pluginTestContent, dartTest);
 
 	///复制到剪贴板
-	vscode.env.clipboard.writeText(kotlinFileModel.pluginContent);
+	// vscode.env.clipboard.writeText(kotlinFileModel.pluginContent);
 }
 
 ///写入文件

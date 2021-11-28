@@ -1,6 +1,13 @@
 # Change Log
 in vscode, search "easy-flutter-plugin".
 
+## Version 0.0.17
+
+* fix a bug.
+
+## Version 0.0.16
+
+* fix a bug.
 
 ## Version 0.0.15
 

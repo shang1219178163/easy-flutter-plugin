@@ -264,13 +264,13 @@ export class JavaCreatorModel {
             }
             let	switchCase =
         `\t\tcase "${model.name}":
-            ${model.name}((${paramsType}) call.arguments, result);;
+            ${model.name}((${paramsType}) call.arguments, result);
             break;
             `;
             if (paramsType === "") {
                 switchCase =
         `\t\tcase "${model.name}":
-            ${model.name}(result);;
+            ${model.name}(result);
             break;
             `; 
             }
@@ -387,13 +387,13 @@ ${models.map((e, index) => {
             }
             let	switchCase =
         `\t\tcase "${model.name}":
-            ${model.name}((${paramsType}) call.arguments, result);;
+            ${model.name}((${paramsType}) call.arguments, result);
             break;
             `;
             if (paramsType === "") {
                 switchCase =
         `\t\tcase "${model.name}":
-            ${model.name}(result);;
+            ${model.name}(result);
             break;
             `; 
             }
