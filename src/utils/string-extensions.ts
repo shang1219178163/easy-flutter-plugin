@@ -21,7 +21,7 @@ declare global {
         /// 驼峰命名法
         camelCase(splitter: string, firstCharacterCapitalize: boolean): string;
         /// 反驼峰命名法
-        uncamelCase(): string;
+        uncamelCase(splitter: string): string;
 	}
 
 }
@@ -43,7 +43,7 @@ if (!String.prototype.isEmpty) {
 
 if (!String.prototype.toCapitalized) {
     String.prototype.toCapitalized = function (): string {
-        return this[0].toUpperCase() + this.substr(1).toLowerCase();
+        return this[0].toUpperCase() + this.substr(1);
     };
 }
 
@@ -60,8 +60,8 @@ if (!String.prototype.substringBetween) {
 }
 
 if (!String.prototype.camelCase) {
-    String.prototype.camelCase = function(splitter: string = "-", firstCharacterCapitalize: boolean = true): string {
-        return this.split(splitter)
+    String.prototype.camelCase = function(separator: string = "-", firstCharacterCapitalize: boolean = true): string {
+        return this.split(separator)
         .map((e, index) => {
             if (index === 0 && firstCharacterCapitalize === false) {
                 return e;
@@ -73,10 +73,10 @@ if (!String.prototype.camelCase) {
 }
 
 if (!String.prototype.uncamelCase) {
-    String.prototype.uncamelCase = function(): string {
+    String.prototype.uncamelCase = function(separator: string = "-"): string {
         return this.split("")
         .map(e => {
-            return /[A-Z]/.test(e) ? `_${e.toLowerCase()}` : e;
+            return /[A-Z]/.test(e) ? `${separator}${e.toLowerCase()}` : e;
         })
         .join("");
     };
@@ -100,7 +100,7 @@ function test(){
     let a1 = "hello_test_one".camelCase("_", false);
     console.log(`camelCase1: ${a1}`);
 
-    let a2 = "hello_test_one".uncamelCase();
+    let a2 = "hello_test_one".uncamelCase("_");
     console.log(`uncamelCase: ${a2}`);
 
 }

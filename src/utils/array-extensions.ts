@@ -118,7 +118,7 @@ if (!Array.prototype.replace) {
 
 if (!Array.prototype.filterNull) { 
     Array.prototype.filterNull = function<T>(): Array<T> { 
-        return this.filter(e => e !== null && e !== undefined );
+        return this.filter(e => e !== null && e !== undefined);
     }; 
 } 
 
@@ -152,7 +152,10 @@ export { }; // this file needs to be a module
 
 
 /// interface 方法测试
-function testArray(){
+export function testArray(){
+
+    console.log([].first(), [].last());
+
     let list = ["a", "b", "c", "d"];
 	console.log(list.first(), list.last());
 
