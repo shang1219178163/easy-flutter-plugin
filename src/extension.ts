@@ -94,35 +94,17 @@ function handleFlutterVersionChange(){
  */
 function handleCreateFiles(version: string, isReplace: boolean) {
 
-	
 	let workspaceFolders = vscode.workspace.workspaceFolders;
 	if (workspaceFolders === undefined || workspaceFolders.length === 0) {
 		vscode.window.showInformationMessage('Open flutter plugin project please!');
 		return;
 	}
 
-	let rootPath = workspaceFolders[0].uri.path;
-	// if (workspaceFolders.length > 1) {
-	// 	rootPath = vscode.window.activeTextEditor!.document.uri.path;
-	// }
-	let pluginName = rootPath.split("/").reverse()[0];
-	// let pluginName = path.basename(rootPath);
-	console.log(Date().toLocaleString(), pluginName, pluginName.camelCase("_", true));
-
-	let iosPath = rootPath + "/ios/Classes";
-
-	let webPath = rootPath + "/lib";
-
-	let exampleMainPath = rootPath + "/example/lib";
-	let testPath = rootPath + "/test";
-
-	console.log(Date().toLocaleString(), rootPath, pluginName, iosPath, exampleMainPath);
-
 	// const fileName = vscode.workspace.name;
 	// console.log(Date().toLocaleString(), fileName);
 
-	// let message = "请选择 flutter 插件工程目录 lib下的 *.dart文件.";
-	let message = "Please select the *.dart file in the lib directory of the flutter plugin project.";
+	// const message = "请选择 flutter 插件工程目录 lib下的 *.dart文件.";
+	const message = "Please select the *.dart file in the lib directory of the flutter plugin project.";
 	if (!vscode.window.activeTextEditor 
 		|| vscode.window.activeTextEditor?.document.languageId !== "dart") {
 		vscode.window.showErrorMessage(message);
@@ -131,7 +113,15 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 
 	const currentOpenTabfilePath = vscode.window.activeTextEditor!.document.uri.fsPath;
 	const currentlyOpenTabfileName = path.basename(currentOpenTabfilePath);
-	console.log(Date().toLocaleString(), currentOpenTabfilePath, currentlyOpenTabfileName);
+	const rootPath = currentOpenTabfilePath.split("/lib")[0];
+	const pluginName = currentlyOpenTabfileName.replace(".dart", "");
+
+	const iosPath = rootPath + "/ios/Classes";
+	const webPath = rootPath + "/lib";
+	const exampleMainPath = rootPath + "/example/lib";
+	const testPath = rootPath + "/test";
+
+	console.log(Date().toLocaleString(), rootPath, pluginName, pluginName.camelCase("_", true), iosPath, exampleMainPath);
 
 	const content: string = fs.readFileSync(currentOpenTabfilePath, 'utf8'); 
 	// console.log(Date(), content);
@@ -139,6 +129,7 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 		vscode.window.showErrorMessage(message);
 		return;
 	}
+	// return;
 
 	const lines = content.split("\n");
 	// console.log(Date(), lines);
@@ -179,36 +170,36 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 		return model;
 	});
 
-	let objcFileModel = FileCreator.objc(fucModels, clsName, pluginName, version);
+	const objcFileModel = FileCreator.objc(fucModels, clsName, pluginName, version);
 
-	let swiftFileModel = FileCreator.swift(fucModels, clsName, pluginName, version);
+	const swiftFileModel = FileCreator.swift(fucModels, clsName, pluginName, version);
 
-	let javaFileModel = FileCreator.java(fucModels, clsName, pluginName, version);
+	const javaFileModel = FileCreator.java(fucModels, clsName, pluginName, version);
 
-	let kotlinFileModel = FileCreator.kotlin(fucModels, clsName, pluginName, version);
+	const kotlinFileModel = FileCreator.kotlin(fucModels, clsName, pluginName, version);
 
-	let dartFileModel = FileCreator.dart(fucModels, clsName, pluginName, version);
+	const dartFileModel = FileCreator.dart(fucModels, clsName, pluginName, version);
 
-	let webFileModel = FileCreator.web(fucModels, clsName, pluginName, version);
+	const webFileModel = FileCreator.web(fucModels, clsName, pluginName, version);
 
 	// console.log(Date(), objcH, objcM, objcContent);
-	let downloadDir = rootPath.split("/").slice(0, 3).concat("Downloads").join("/");
+	const downloadDir = rootPath.split("/").slice(0, 3).concat("Downloads").join("/");
 	console.log(Date(), downloadDir);
 
-	let objcPluginH = `${isReplace ? iosPath : downloadDir}/${clsName}.h`;
-	let objcPluginM = `${isReplace ? iosPath : downloadDir}/${clsName}.m`;
-	let swiftPlugin = `${isReplace ? iosPath : downloadDir}/Swift${clsName}.swift`;
+	const objcPluginH = `${isReplace ? iosPath : downloadDir}/${clsName}.h`;
+	const objcPluginM = `${isReplace ? iosPath : downloadDir}/${clsName}.m`;
+	const swiftPlugin = `${isReplace ? iosPath : downloadDir}/Swift${clsName}.swift`;
 
-	let andriodJavaPluginDir = rootPath + `/android/src/main/java/com/example/${pluginName}`;
-	let andriodKotlinPluginDir = rootPath + `/android/src/main/kotlin/com/example/${pluginName}`;
+	const andriodJavaPluginDir = rootPath + `/android/src/main/java/com/example/${pluginName}`;
+	const andriodKotlinPluginDir = rootPath + `/android/src/main/kotlin/com/example/${pluginName}`;
 
-	let javaPlugin = `${isReplace ? andriodJavaPluginDir : downloadDir}/${clsName}.java`;
-	let kotlinPlugin = `${isReplace ? andriodKotlinPluginDir : downloadDir}/${clsName}.kt`;
+	const javaPlugin = `${isReplace ? andriodJavaPluginDir : downloadDir}/${clsName}.java`;
+	const kotlinPlugin = `${isReplace ? andriodKotlinPluginDir : downloadDir}/${clsName}.kt`;
 
-	let webPlugin = `${isReplace ? webPath : downloadDir}/${pluginName}_web.dart`;
+	const webPlugin = `${isReplace ? webPath : downloadDir}/${pluginName}_web.dart`;
 
-	let dartMain = `${isReplace ? exampleMainPath : downloadDir}/main.dart`;
-	let dartTest = `${isReplace ? testPath : downloadDir}/${pluginName}_test.dart`;
+	const dartMain = `${isReplace ? exampleMainPath : downloadDir}/main.dart`;
+	const dartTest = `${isReplace ? testPath : downloadDir}/${pluginName}_test.dart`;
 
 	console.log(Date(), objcPluginH, objcPluginM, swiftPlugin, dartMain, kotlinPlugin);
 	// /Users/shang/user/example/lib/main.dart

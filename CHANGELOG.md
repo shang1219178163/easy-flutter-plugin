@@ -1,6 +1,10 @@
 # Change Log
 in vscode, search "easy-flutter-plugin".
 
+## Version 0.0.18
+
+* support on vscode open multiple flutter plug-in projects.
+
 ## Version 0.0.17
 
 * fix a bug.
