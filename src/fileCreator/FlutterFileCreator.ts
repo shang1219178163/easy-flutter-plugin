@@ -14,7 +14,7 @@ import { DartMethodModel } from './Models';
 export module DartCreator {
 
     /// 创建 plugin example 中 main.dart 页面,方便调试
-    export function createExampleMain250(models: DartMethodModel[], clsName: string, pluginName: string): string {
+    export function createExampleMain250(models: DartMethodModel[], pluginName: string): string {
             
         let privateVars = `
     ${models.map((e, index) => { 
@@ -29,7 +29,7 @@ export module DartCreator {
     `;
             
         let privateFuncs = models.map((e, index) => {
-            return `${createExampleMainPrivateFunc(e, clsName)}`;
+            return `${createExampleMainPrivateFunc(e, pluginName)}`;
         }).join("\n");
             
         let children = models.map((e, index) => {
@@ -89,7 +89,7 @@ class _MyAppState extends State<MyApp> {
       scaffoldMessengerKey: _scaffoldKey,
       home: Scaffold(
       appBar: AppBar(
-          title: const Text('Hello5 Plugin example app'),
+        title: const Text('${pluginName.camelCase("_", true)} Plugin example'),
         ),
         body: _buildBody(),
       ),
@@ -115,7 +115,7 @@ class _MyAppState extends State<MyApp> {
     }
 
     /// 创建 plugin example 中 main.dart 页面,方便调试
-    export function createExampleMain1172(models: DartMethodModel[], clsName: string, pluginName: string): string {
+    export function createExampleMain1172(models: DartMethodModel[], pluginName: string): string {
             
         let privateVars = 
 `
@@ -132,7 +132,7 @@ class _MyAppState extends State<MyApp> {
     `;
             
         let privateFuncs = models.map((e, index) => { 
-            return `${createExampleMainPrivateFunc(e, clsName)}`;
+            return `${createExampleMainPrivateFunc(e, pluginName)}`;
         }).join("\n");
             
         let children = models.map((e, index) => { 
@@ -192,7 +192,7 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          title: const Text('HelloTestOne Plugin example'),
+          title: const Text('${pluginName.camelCase("_", true)} Plugin example'),
           ),
         body: _buildBody(),
       ),
@@ -217,7 +217,7 @@ class _MyAppState extends State<MyApp> {
         return content;
     }
         
-    export function createExampleMainPrivateFunc(model: DartMethodModel, clsName: string): string {
+    export function createExampleMainPrivateFunc(model: DartMethodModel, pluginName: string): string {
 
         var params = "";
         switch (model.paramsType) {
@@ -260,7 +260,7 @@ class _MyAppState extends State<MyApp> {
         let body =`
   Future<void> ${model.name}() async {
     ${params}
-    String result = await ${clsName}.${model.name}(${paramsName});
+    String result = await ${pluginName.camelCase("_", true)}.${model.name}(${paramsName});
     setState(() {
       _${model.name} = result;
     });
@@ -271,9 +271,9 @@ class _MyAppState extends State<MyApp> {
     }
 
     /// 创建 plugin *_test.dart
-    export function createPluginTest(models: DartMethodModel[], clsName: string, pluginName: string): string {
+    export function createPluginTest(models: DartMethodModel[], pluginName: string): string {
 
-        function createPluginTestFunc(model: DartMethodModel, clsName: string, pluginName: string): string {
+        function createPluginTestFunc(model: DartMethodModel, pluginName: string): string {
             var params = "";
             switch (model.paramsType) {
             case "Map<String, dynamic>":
@@ -315,7 +315,7 @@ class _MyAppState extends State<MyApp> {
             let testFucBody =`
   test('${model.name}', () async {
     ${params}
-    expect(await ${clsName}.${model.name}(${paramsName}), isInstanceOf<String>());
+    expect(await ${pluginName.camelCase("_", true)}.${model.name}(${paramsName}), isInstanceOf<String>());
   });`;
             return testFucBody;
         }
@@ -341,7 +341,7 @@ void main() {
   });
 
   ${models.map((e, index) => { 
-    return createPluginTestFunc(e, clsName, pluginName);
+    return createPluginTestFunc(e, pluginName);
   }).join("\n")}
 }
 `;
@@ -362,13 +362,13 @@ export class DartCreatorModel {
     public flutterVersion: string){
       switch (flutterVersion) {
         case "1.17.2":
-          this.exampleMainContent = DartCreator.createExampleMain1172(models, clsName, pluginName);
+          this.exampleMainContent = DartCreator.createExampleMain1172(models, pluginName);
           break;
       
         default:
-          this.exampleMainContent = DartCreator.createExampleMain250(models, clsName, pluginName);
+          this.exampleMainContent = DartCreator.createExampleMain250(models, pluginName);
           break;
       }
-      this.pluginTestContent = DartCreator.createPluginTest(models, clsName, pluginName);
+      this.pluginTestContent = DartCreator.createPluginTest(models, pluginName);
   }  
 }

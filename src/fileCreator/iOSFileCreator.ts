@@ -66,11 +66,11 @@ export module SwiftCreator {
 import Flutter
 import UIKit
 
-public class Swift${clsName}Plugin: NSObject, FlutterPlugin {
+public class Swift${clsName}: NSObject, FlutterPlugin {
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "${pluginName}", binaryMessenger: registrar.messenger())
-        let instance = Swift${clsName}Plugin()
+        let instance = Swift${clsName}()
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
     
@@ -162,7 +162,7 @@ ${ocFuncName} {
         let contentH = `
 #import <Flutter/Flutter.h>
 
-@interface ${clsName}Plugin : NSObject<FlutterPlugin>
+@interface ${clsName} : NSObject<FlutterPlugin>
 
 ${tuples.map((e, index) => { 
     return e[0];	
@@ -172,21 +172,21 @@ ${tuples.map((e, index) => {
 `;
     
         let contentM = `
-#import "${clsName}Plugin.h"
+#import "${clsName}.h"
 
-@implementation ${clsName}Plugin
+@implementation ${clsName}
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     FlutterMethodChannel* channel = [FlutterMethodChannel methodChannelWithName:@"${pluginName}"
         binaryMessenger:[registrar messenger]];
-    ${clsName}Plugin* instance = [[${clsName}Plugin alloc] init];
+    ${clsName}* instance = [[${clsName} alloc] init];
     [registrar addMethodCallDelegate:instance channel:channel];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result{
     // NSLog(@"call.arguments: %@", call.arguments);
-    [self reflectMethod:[${clsName}Plugin new]
-                    Call:call
+    [self reflectMethod:[${clsName} new]
+                    call:call
                     result:result];
 }
 
@@ -195,7 +195,7 @@ ${tuples.map((e, index) => {
 /// @param call FlutterPlugin 参数
 /// @param result FlutterPlugin 参数
 - (void)reflectMethod:(NSObject *)instance
-                    Call:(FlutterMethodCall *)call
+                    call:(FlutterMethodCall *)call
                 result:(FlutterResult)result {
     NSString *method = call.method; //获取函数名
     id arguments = call.arguments; //获取参数列表

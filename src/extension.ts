@@ -93,13 +93,22 @@ function handleFlutterVersionChange(){
  * @param isReplace 是否去掉原始文件.
  */
 function handleCreateFiles(version: string, isReplace: boolean) {
+
+	
 	let workspaceFolders = vscode.workspace.workspaceFolders;
 	if (workspaceFolders === undefined || workspaceFolders.length === 0) {
 		vscode.window.showInformationMessage('Open flutter plugin project please!');
 		return;
 	}
+
 	let rootPath = workspaceFolders[0].uri.path;
+	// if (workspaceFolders.length > 1) {
+	// 	rootPath = vscode.window.activeTextEditor!.document.uri.path;
+	// }
 	let pluginName = rootPath.split("/").reverse()[0];
+	// let pluginName = path.basename(rootPath);
+	console.log(Date().toLocaleString(), pluginName, pluginName.camelCase("_", true));
+
 	let iosPath = rootPath + "/ios/Classes";
 
 	let webPath = rootPath + "/lib";
@@ -133,12 +142,9 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 
 	const lines = content.split("\n");
 	// console.log(Date(), lines);
-
-	const clsName = lines.filter(function (value, index, array) {
-		return value.startsWith("class ");
-	})[0].trim().split(" ")[1];
-
-	// const clsName = pluginName[0].toUpperCase() + pluginName;
+	///插件类名
+	let clsName = pluginName.camelCase("_", true);
+	clsName += clsName.endsWith("Plugin") ? "" : "Plugin";
 	// console.log(Date().toLocaleString(), pluginName, clsName);
 
 	let fucModels: DartMethodModel[] = lines
@@ -189,15 +195,15 @@ function handleCreateFiles(version: string, isReplace: boolean) {
 	let downloadDir = rootPath.split("/").slice(0, 3).concat("Downloads").join("/");
 	console.log(Date(), downloadDir);
 
-	let objcPluginH = `${isReplace ? iosPath : downloadDir}/${clsName}${clsName.endsWith("Plugin") ? "" : "Plugin"}.h`;
-	let objcPluginM = `${isReplace ? iosPath : downloadDir}/${clsName}${clsName.endsWith("Plugin") ? "" : "Plugin"}.m`;
-	let swiftPlugin = `${isReplace ? iosPath : downloadDir}/Swift${clsName}${clsName.endsWith("Plugin") ? "" : "Plugin"}.swift`;
+	let objcPluginH = `${isReplace ? iosPath : downloadDir}/${clsName}.h`;
+	let objcPluginM = `${isReplace ? iosPath : downloadDir}/${clsName}.m`;
+	let swiftPlugin = `${isReplace ? iosPath : downloadDir}/Swift${clsName}.swift`;
 
 	let andriodJavaPluginDir = rootPath + `/android/src/main/java/com/example/${pluginName}`;
 	let andriodKotlinPluginDir = rootPath + `/android/src/main/kotlin/com/example/${pluginName}`;
 
-	let javaPlugin = `${isReplace ? andriodJavaPluginDir : downloadDir}/${clsName}${clsName.endsWith("Plugin") ? "" : "Plugin"}.java`;
-	let kotlinPlugin = `${isReplace ? andriodKotlinPluginDir : downloadDir}/${clsName}${clsName.endsWith("Plugin") ? "" : "Plugin"}.kt`;
+	let javaPlugin = `${isReplace ? andriodJavaPluginDir : downloadDir}/${clsName}.java`;
+	let kotlinPlugin = `${isReplace ? andriodKotlinPluginDir : downloadDir}/${clsName}.kt`;
 
 	let webPlugin = `${isReplace ? webPath : downloadDir}/${pluginName}_web.dart`;
 

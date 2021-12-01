@@ -1,8 +1,8 @@
 //
-//  Andriodcreator.ts
+//  Andriodfilecreator.ts
 //  easy-flutter-plugin
 //
-//  Created by shangbinbin on 2021/11/21.
+//  Created by shangbinbin on 2021/12/01.
 //  Copyright © 2021 Shang. All rights reserved.
 //
 //
@@ -53,8 +53,8 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
-/** ${clsName}Plugin */
-public class ${clsName}Plugin: FlutterPlugin, MethodCallHandler {
+/** ${clsName} */
+public class ${clsName}: FlutterPlugin, MethodCallHandler {
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
     /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -79,7 +79,7 @@ public class ${clsName}Plugin: FlutterPlugin, MethodCallHandler {
         @JvmStatic
         fun registerWith(registrar: Registrar) {
             val channel = MethodChannel(registrar.messenger(), "${pluginName}")
-            channel.setMethodCallHandler(${clsName}Plugin())
+            channel.setMethodCallHandler(${clsName}())
         }
     }
 
@@ -146,8 +146,8 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
-/** ${clsName}Plugin */
-public class ${clsName}Plugin: FlutterPlugin, MethodCallHandler {
+/** ${clsName} */
+public class ${clsName}: FlutterPlugin, MethodCallHandler {
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
     /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -292,8 +292,8 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
-/** ${clsName}Plugin */
-public class ${clsName}Plugin implements FlutterPlugin, MethodCallHandler {
+/** ${clsName} */
+public class ${clsName} implements FlutterPlugin, MethodCallHandler {
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
     /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -317,7 +317,7 @@ public class ${clsName}Plugin implements FlutterPlugin, MethodCallHandler {
     // in the same class.
     public static void registerWith(Registrar registrar) {
         final MethodChannel channel = new MethodChannel(registrar.messenger(), "${pluginName}");
-        channel.setMethodCallHandler(new ${clsName}Plugin());
+        channel.setMethodCallHandler(new ${clsName}());
     }
     
     @Override
@@ -415,8 +415,8 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
-/** ${clsName}Plugin */
-public class ${clsName}Plugin implements FlutterPlugin, MethodCallHandler {
+/** ${clsName} */
+public class ${clsName} implements FlutterPlugin, MethodCallHandler {
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
     /// This local reference serves to register the plugin with the Flutter Engine and unregister it
