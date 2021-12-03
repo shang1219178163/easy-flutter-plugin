@@ -9,6 +9,11 @@
 
 
 declare global {  
+    interface ArrayConstructor {
+        /// 静态方法
+        generator<T>(count: number, callbackfn: (index: number) => T): T[];
+    }
+
 	interface Array<T> {
         /// or undefined
 		first(): T;
@@ -34,6 +39,13 @@ declare global {
         filterNull(): Array<T>;
 	}
 }  
+
+if (!Array.generator) { 　　　　
+    Array.generator = function<T>(count: number, callbackfn: (index: number) => T): T[] {
+        return [...Array(count)].map((_, index) => callbackfn(index));
+    };
+}
+
 
 if (!Array.prototype.first) { 　　　　
     Array.prototype.first = function<T>(this: Array<T>): T {
@@ -82,7 +94,6 @@ if (!Array.prototype.removeFirst) {
     }; 
 } 
 
-
 if (!Array.prototype.removeLast) { 
     Array.prototype.removeLast = function<T>(this: Array<T>): Array<T> { 
         if (this.length > 0) {
@@ -92,20 +103,17 @@ if (!Array.prototype.removeLast) {
     }; 
 } 
 
-
 if (!Array.prototype.insert) { 
     Array.prototype.insert = function<T>(item: T, atIndex: number): Array<T> { 
         return <Array<T>>this.splice(atIndex, 0, item); 
     }; 
 } 
 
-
 if (!Array.prototype.insertItems) { 
     Array.prototype.insertItems = function<T>(items: Array<T>, atIndex: number): Array<T> { 
         return <Array<T>>this.splice(atIndex, 0, items); 
     }; 
 } 
-
 
 if (!Array.prototype.replace) { 
     Array.prototype.replace = function<T>(index: number, item: T): Array<T> { 
@@ -182,4 +190,13 @@ export function testArray(){
 
     list.replace(1, "oo");
     console.log(`list.replace(1, "oo"): ${list}`);
+
+    let items = Array.generator(9, ((index) => {
+        return `_${index}_`;
+    }));
+    console.log(`items: ${items}`);
+
+    let listc = [...Array(10)].map((e, index)=>index);
+    console.log(`listc: ${listc}`);
+
 }

@@ -23,15 +23,27 @@ declare global {
 		isEmpty(): boolean;
         ///字符串翻转
         reverse(): string;
+        /// 获取前缀
+        start(maxLength: number): string;
+        /// 获取后缀
+        end(maxLength: number): string;
 
 		/// 首字母大写
 		toCapitalized(): string;
         /// 获取两字符中间的部分
 		substringBetween(prefix: string, suffix: string, isContain?: boolean): string;
+        /// 取代一定范围的字符串
+        replaceSubrange(location: number, length: number, replaceValue: string): string;
+
         /// 驼峰命名法
         camelCase(separator: string, isUpper?: boolean): string;
         /// 反驼峰命名法
         uncamelCase(separator?: string): string;
+        ///过滤字符
+        filter(predicate: (char: string, index: number) => Boolean): string;
+        ///过滤字符
+        map(callbackfn: (char: string, index: number) => string): string;
+
 	}
 
 }
@@ -65,6 +77,24 @@ if (!String.prototype.reverse) {
     };
 }
 
+if (!String.prototype.start) {
+    String.prototype.start = function (maxLength: number): string {
+        if (this.length < maxLength) {
+            return this.toString();
+        }
+        return this.substr(0, maxLength);
+    };
+}
+
+if (!String.prototype.end) {
+    String.prototype.end = function (maxLength: number): string {
+        if (this.length < maxLength) {
+            return this.toString();
+        }
+        return this.substr(this.length - maxLength, maxLength);
+    };
+}
+
 if (!String.prototype.toCapitalized) {
     String.prototype.toCapitalized = function (): string {
         // return this[0].toUpperCase() + this.substr(1);
@@ -81,6 +111,13 @@ if (!String.prototype.substringBetween) {
         }
         const result = this.substring(startIdx + prefix.length, endIdx);
         return result;
+    };
+}
+
+if (!String.prototype.replaceSubrange) {
+    String.prototype.replaceSubrange = function(location: number, length: number, replaceValue: string): string{
+        let val = this.substr(location, length);
+        return this.replace(val, replaceValue);
     };
 }
 
@@ -109,6 +146,23 @@ if (!String.prototype.uncamelCase) {
         .join("");
     };
 }
+
+if (!String.prototype.filter) {
+    String.prototype.filter = function(predicate: (char: string, index: number) => Boolean): string{
+        return this.split("")
+        .filter((e, index) => predicate(e, index))
+        .join("");
+    };
+}
+
+if (!String.prototype.map) {
+    String.prototype.map = function(callbackfn: (char: string, index: number) => string): string{
+        return this.split("")
+        .map((e, index) => callbackfn(e, index))
+        .join("");
+    };
+}
+
 
 
 export {}; 
@@ -142,5 +196,19 @@ export function testString(){
     let a22 = a1.uncamelCase();
     console.log(`uncamelCase22: ${a22}`);
 
-    "".
+    let val = "0123456789";
+    console.log(val.reverse());
+    console.log(val.start(3));
+    console.log(val.end(3));
+
+    console.log(val.replace("678", "***"));
+    console.log(val.replaceSubrange(1, 3, "***"));
+
+    console.log(testVoid());
+
+}
+
+
+function testVoid(){
+
 }
