@@ -7,7 +7,6 @@
 //
 //
 
-
 declare global {  
     interface ArrayConstructor {
         /// 静态方法
@@ -199,4 +198,16 @@ export function testArray(){
     let listc = [...Array(10)].map((e, index)=>index);
     console.log(`listc: ${listc}`);
 
+    // let listd = "abcdefghmn";
+    // console.log(`listc: ${Object.keys(listd)}`);
+    // console.log(`listc: ${Object.values(listd)}`);
+    // console.log(`listc: ${Object.entries(listd)}`);
+
+    let val = "abcdef";
+    console.log(val, val);
+    ddlog(val, val);
+    // ddlog1(val, val);
+    console.log(Date().toString(), val, val);
+
 }
+
