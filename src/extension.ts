@@ -16,6 +16,7 @@ import { FileCreator } from './fileCreator/FileCreator';
 import { DartCreatorModel } from './fileCreator/FlutterFileCreator';
 import { ObjcCreatorModel, SwiftCreatorModel } from './fileCreator/iOSFileCreator';
 import { JavaCreatorModel, KotlinCreatorModel } from './fileCreator/AndriodFileCreator';
+import { testArray } from './utils/array-extensions';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -36,6 +37,8 @@ export function activate(context: vscode.ExtensionContext) {
 		// vscode.window.showInformationMessage('Hello World from TypeScript!');
 		// vscode.window.setStatusBarMessage('Hello World from TypeScript!', 3000);
 
+		// testArray();
+		// return;
 		handleFlutterVersionChange();
 	});
 

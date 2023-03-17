@@ -1,4 +1,4 @@
-# EasyFlutterPlugin;
+# EasyFlutterPlugin - VSCode extension
 
 <a href="https://flutter.dev/">
   <img src="https://img.shields.io/badge/flutter-%3E%3D%201.17.2-green.svg"/>
